@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#button").click(function(){
+       $("#sonuc").text(  "TOPLAM :" +  $("#firstname").val() * $("#lastname").val()) ;
+    });
+});
+
+</script>
+
+		<style>
+.top5 { margin-top:5px; }
+.top7 { margin-top:7px; }
+.top10 { margin-top:10px; }
+.top15 { margin-top:15px; }
+.top17 { margin-top:17px; }
+.top30 { margin-top:30px; }
+</style>
+
+
+<script type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/B1D671CF-E532-4481-99AA-19F420D90332/netdefender/hui/ndhui.css" /></head>
+<body><script type="text/javascript" language="javascript" src="/B1D671CF-E532-4481-99AA-19F420D90332/netdefender/hui/ndhui.js?0=0&amp;0=0&amp;0=0"></script>
+
+<div class="container">
+<h1>sdfsfsdf</h1>
+
+  <div class="row top15">
+    <div class="col-md">
+      <input id="firstname" type="text" class="form-control" value="120" placeholder="First name">
+    </div>
+    <div  class="col-md-6">
+		<select id="lastname" class="form-control">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		</select>
+    </div>
+  </div>
+
+  <div class="row top15 ">
+  
+    <div class="col-md">
+       <button id="button"  class="btn btn-primary">HESAPLA</button>
+    </div>
+	<div class="col-md">
+	  <h3 id="sonuc">TOPLAM : </h3>
+    </div>
+  </div>
+  
+
+  
+ </div>
+ 
+</body>
+</html>
