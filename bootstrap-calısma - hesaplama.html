@@ -6,8 +6,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
+
+var toplam = 0;
+
+
     $("#button").click(function(){
-       $("#sonuc").text(  "TOPLAM :" +  $("#firstname").val() * $("#lastname").val()) ;
+		if ($("#checkEkDepolamaAlanı").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkCatch-All").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkArşivleme").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkMX-Backup").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkKurulumveYapılandırma").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
+	
+       $("#sonuc").text(  toplam +  $("#InputDomainCount").val()*12) ;
+	   toplam = 0
     });
 });
 
@@ -26,29 +38,74 @@ $(document).ready(function(){
 <body>
 
 <div class="container">
-<h1>sdfsfsdf</h1>
+<h1>domain hesaplama</h1>
 
   <div class="row top15">
-    <div class="col-md">
-      <input id="firstname" type="text" class="form-control" value="120" placeholder="First name">
+    <div class="col-sm">
+    <label for="exampleInputEmail1">Domain Adress</label>
+    <input type="email" class="form-control" id="InputDomainAdress" aria-describedby="emailHelp" placeholder="yourdomain.com">
     </div>
-    <div  class="col-md-6">
-		<select id="lastname" class="form-control">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-		</select>
+  </div>
+  
+  <div class="row top15">
+    <div class="col-sm">
+    <label for="exampleInputEmail1">Domain Count</label>
+    <input type="email" class="form-control" id="InputDomainCount" aria-describedby="emailHelp" placeholder="Örnek Olarak : 25">
     </div>
+
+  </div>
+
+  <div class="row top15">
+    
+    <div class="col-sm">
+	<legend>Ek Özellikler</legend>
+	<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkEkDepolamaAlanı" class="form-check-input" type="checkbox" value="">
+    Kullanıcı Hesapları İçin Ek Depolama Alanı 5GB
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkCatch-All" class="form-check-input" type="checkbox" value="">
+    Catch-All Özelliği
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkAnti-Spam" class="form-check-input" type="checkbox" value="">
+    Profesyonel Anti-Spam Koruması
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkArşivleme" class="form-check-input" type="checkbox" value="">
+    E-mail Arşivleme
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkMX-Backup" class="form-check-input" type="checkbox" value="">
+    MX Backup
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="">
+    Uzaktan Client Kurulum ve Yapılandırma Desteği
+  </label>
+</div>
+    </div>
+
   </div>
 
   <div class="row top15 ">
   
-    <div class="col-md">
+    <div class="col-sm">
        <button id="button"  class="btn btn-primary">HESAPLA</button>
     </div>
-	<div class="col-md">
-	  <h3 id="sonuc">TOPLAM : </h3>
+	<div class="col-sm">
+	  <h3 id="sonuc"> </h3>
     </div>
   </div>
   
