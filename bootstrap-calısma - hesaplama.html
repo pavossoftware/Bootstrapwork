@@ -8,10 +8,18 @@
 $(document).ready(function(){
 
 var toplam = 0;
+var ekhizmetler = "";
 
 
-    $("#button").click(function(){
-		if ($("#checkEkDepolamaAlanı").is(":checked")) { toplam = toplam + 10;}
+	$("input").change(function(){
+	
+		$('input[type=checkbox]').each(function () {
+           if (this.checked) {
+               ekhizmetler = ekhizmetler + $(this).val() + ", ";
+           }
+		});
+	
+        if ($("#checkEkDepolamaAlanı").is(":checked")) { toplam = toplam + 10; }
 		if ($("#checkCatch-All").is(":checked")) { toplam = toplam + 10;}
 		if ($("#checkArşivleme").is(":checked")) { toplam = toplam + 10;}
 		if ($("#checkMX-Backup").is(":checked")) { toplam = toplam + 10;}
@@ -19,9 +27,11 @@ var toplam = 0;
 		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
 	
        $("#sonuc").text(  toplam +  $("#InputDomainCount").val()*12) ;
-	   $("#comment").text("toplam tutar :" + $("#sonuc").text() ) ;
+	   $("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı " + ekhizmetler +" ek hizmetleri ile "+ "toplam tutar :" + $("#sonuc").text() ) ;
 	   
 	   toplam = 0
+	   ekhizmetler = "";
+		 
     });
 });
 
@@ -48,14 +58,14 @@ var toplam = 0;
    
     <div class="row top15">
        <div class="col-sm-12">
-    <label for="exampleInputEmail1">Domain Adress</label>
-    <input type="email" class="form-control" id="InputDomainAdress" aria-describedby="emailHelp" placeholder="yourdomain.com">
+    <label for="exampleInputEmail1">Domain Adresi</label>
+    <input type="text" class="form-control" id="InputDomainAdress" aria-describedby="emailHelp" placeholder="yourdomain.com" >
     </div>
     </div>
 	<div class="row top15">
 	    <div class="col-sm-12">
-    <label for="exampleInputEmail1">Domain Count</label>
-    <input type="email" class="form-control" id="InputDomainCount" aria-describedby="emailHelp" placeholder="Örnek Olarak : 25">
+    <label for="exampleInputEmail1">Mail Hesabı Sayısı</label>
+    <input type="number" class="form-control" id="InputDomainCount" aria-describedby="emailHelp" placeholder="Örnek Olarak : 25" >
     </div>
    
     </div>
@@ -69,37 +79,37 @@ var toplam = 0;
 	<legend>Ek Özellikler</legend>
 	<div class="form-check">
   <label class="form-check-label">
-    <input id="checkEkDepolamaAlanı" class="form-check-input" type="checkbox" value="">
+    <input id="checkEkDepolamaAlanı" class="form-check-input" type="checkbox" value="Kullanıcı Hesapları İçin Ek Depolama Alanı 5GB">
     Kullanıcı Hesapları İçin Ek Depolama Alanı 5GB
   </label>
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input id="checkCatch-All" class="form-check-input" type="checkbox" value="">
+    <input id="checkCatch-All" class="form-check-input" type="checkbox" value="Catch-All Özelliği">
     Catch-All Özelliği
   </label>
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input id="checkAnti-Spam" class="form-check-input" type="checkbox" value="">
+    <input id="checkAnti-Spam" class="form-check-input" type="checkbox" value="Profesyonel Anti-Spam Korumas">
     Profesyonel Anti-Spam Koruması
   </label>
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input id="checkArşivleme" class="form-check-input" type="checkbox" value="">
+    <input id="checkArşivleme" class="form-check-input" type="checkbox" value="E-mail Arşivleme">
     E-mail Arşivleme
   </label>
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input id="checkMX-Backup" class="form-check-input" type="checkbox" value="">
+    <input id="checkMX-Backup" class="form-check-input" type="checkbox" value="MX Backup">
     MX Backup
   </label>
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="">
+    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="Uzaktan Client Kurulum ve Yapılandırma Desteği">
     Uzaktan Client Kurulum ve Yapılandırma Desteği
   </label>
 </div>
@@ -113,16 +123,12 @@ var toplam = 0;
   </div>
   
     <div class="row top15 ">
-  
-    <div class="col-sm-4">
-       <button id="button"  class="btn btn-primary">HESAPLA</button>
-    </div>
 	
-	<div class="col-sm-4">
+	<div class="col-sm-6">
        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">TEKLİF AL</button>
     </div>
 	
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 	  <h3 id="sonuc"> </h3>
     </div>
   </div>
@@ -142,24 +148,24 @@ var toplam = 0;
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal " role="form" method="POST" action="{{ url('/login') }}">
+        <form class="form-horizontal " role="form" method="POST" action="http://localhost:8090/send.php">
                     <div class="form-group">
-                        <label for="email" class="control-label">E-Mail Address</label>
+                        <label for="email" class="control-label">İletişim E-Mail Adresi</label>
                         <div>
-                            <input id="email" type="email" class="form-control" name="email" value="" autofocus required>
+                            <input id="email" type="email" class="form-control" name="eposta" value="" autofocus required>
                         </div>
                     </div>
  
                     <div class="form-group">
-                        <label for="password" class="control-label">Password</label>
+                        <label for="text" class="control-label">İletişim İsim Soyad / Firma</label>
                         <div>
-                            <input id="password" type="password" class="form-control" name="password" required>
+                            <input id="text" type="text" class="form-control" name="ad" required>
                         </div>
                     </div>
 					
 					<div class="form-group">
   <label for="comment">Comment:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
+  <textarea class="form-control" rows="4" name="mesaj" id="comment"></textarea>
 </div>
  
 
