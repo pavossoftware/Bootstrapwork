@@ -12,7 +12,7 @@ var ekhizmetler = "";
 
 
 	$("input").change(function(){
-	
+	if($("#InputDomainAdress").val() != '' && $("#InputDomainCount").val() > 0 ){
 		$('input[type=checkbox]').each(function () {
            if (this.checked) {
                ekhizmetler = ekhizmetler + $(this).val() + ", ";
@@ -26,12 +26,26 @@ var ekhizmetler = "";
 		if ($("#checkKurulumveYapılandırma").is(":checked")) { toplam = toplam + 10;}
 		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
 	
-       $("#sonuc").text(  toplam +  $("#InputDomainCount").val()*12) ;
-	   $("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı " + ekhizmetler +" ek hizmetleri ile "+ "toplam tutar :" + $("#sonuc").text() ) ;
+       
 	   
+	   
+	   $("#sonuc").text(  toplam +  $("#InputDomainCount").val()*12) ;
+	   if( ekhizmetler.length > 0 ){
+			$("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı " + ekhizmetler +" ek hizmetleri ile "+ "toplam tutar :" + $("#sonuc").text() ) ;
+	   }
+	   else{
+			$("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı " + " toplam tutar :" + $("#sonuc").text() ) ;
+	   }
 	   toplam = 0
 	   ekhizmetler = "";
-		 
+	}
+	else
+	{
+		 toplam = 0;
+		ekhizmetler = "";
+		 $("#sonuc").text('');
+		 $("#comment").text('');
+	}
     });
 });
 
@@ -178,9 +192,6 @@ var ekhizmetler = "";
                         </div>
                     </div>
                 </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
