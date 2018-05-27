@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+
+var toplam = 0;
+var ekhizmetler = "";
+
+
+	$("select, input").change(function(){
+	
+		$('input[type=checkbox]').each(function () {
+           if (this.checked) {
+               ekhizmetler = ekhizmetler + $(this).val() + ", ";
+           }
+		});
+	
+        if ($("#checkEkDepolamaAlanı").is(":checked")) { toplam = toplam + 10; }
+		if ($("#checkCatch-All").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkArşivleme").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkMX-Backup").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkKurulumveYapılandırma").is(":checked")) { toplam = toplam + 10;}
+		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
+	
+       
+	   
+	   
+	   $("#sonuc").text(  toplam +  parseInt($("#selectCPU").val()) +parseInt($("#selectRAM").val())+parseInt($("#selectDISK").val()) ) ;
+	   if( ekhizmetler.length > 0 ){
+			$("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı ve " + ekhizmetler +" ek hizmetleri ile "+ "toplam tutar :" + $("#sonuc").text() ) ;
+	   }
+	   else{
+			$("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı " + " toplam tutar :" + $("#sonuc").text() ) ;
+	   }
+	   toplam = 0
+	   ekhizmetler = "";
+
+    });
+});
+
+</script>
+
+		<style>
+.top5 { margin-top:5px; }
+.top7 { margin-top:7px; }
+.top10 { margin-top:10px; }
+.top15 { margin-top:15px; }
+.top17 { margin-top:17px; }
+.top30 { margin-top:30px; }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h1>toplu mail  hesaplama</h1>
+
+  <div class="row top15">
+  
+   <div class="col-md-6">
+   
+    <div class="row top15">
+       <div class="col-sm-12">
+  
+  <label for="sel1">Kullanım tipi</label>
+  <select class="form-control" id="selectCPU">
+    <option>Aylık Sınırsız Gönderim</option>
+    <option>Yıllık Gönderim Adedi</option>
+  </select>
+
+    </div>
+
+    </div>
+	<div class="row top15">
+	    <div class="col-sm-6">
+
+  <label for="sel1">Gönderim Adedi</label>
+  <select class="form-control" id="selectRAM">
+    <option>2</option>
+    <option>4</option>
+  </select>
+
+    </div>
+	
+		    <div class="col-sm-6">
+
+  <label for="sel1">Abone Sayısı</label>
+  <select class="form-control" id="selectRAM">
+    <option>2</option>
+    <option>4</option>
+  </select>
+
+    </div>
+   
+    </div>
+	
+		<div class="row top15">
+	    <div class="col-sm-6">
+
+  <label for="sel1">DISK</label>
+  <select class="form-control" id="selectDISK">
+    <option>80</option>
+    <option>120</option>
+    <option>256</option>
+  </select>
+
+    </div>
+		    <div class="col-sm-6">
+
+  <label for="sel1">DISK</label>
+  <select class="form-control" id="selectDISK">
+    <option>80</option>
+    <option>120</option>
+    <option>256</option>
+  </select>
+
+    </div>
+   
+    </div>
+	
+	</div>
+	
+	<div class="col-md-6">
+     <div class="row top15">
+    
+    <div class="col-sm-12">
+	<legend>Ek Özellikler</legend>
+	<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkEkDepolamaAlanı" class="form-check-input" type="checkbox" value="Ek IP">
+    Ek IP
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkCatch-All" class="form-check-input" type="checkbox" value="Sunucu Yedekleme Günlük">
+    Sunucu Yedekleme Günlük
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkAnti-Spam" class="form-check-input" type="checkbox" value="Profesyonel Anti-Spam Korumas">
+    Profesyonel Anti-Spam Koruması
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkArşivleme" class="form-check-input" type="checkbox" value="E-mail Arşivleme">
+    E-mail Arşivleme
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkMX-Backup" class="form-check-input" type="checkbox" value="MX Backup">
+    MX Backup
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="Uzaktan Client Kurulum ve Yapılandırma Desteği">
+    Uzaktan Client Kurulum ve Yapılandırma Desteği
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="Yedek Asenkron Sunucu">
+   Yedek Asenkron Sunucu
+  </label>
+</div>
+    </div>
+
+  </div>
+
+   
+	</div>
+	
+  </div>
+  
+    <div class="row top15 ">
+	
+	<div class="col-sm-6">
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">TEKLİF AL</button>
+    </div>
+	
+	<div class="col-sm-6">
+	  <h3 id="sonuc"> </h3>
+    </div>
+  </div>
+
+  
+ </div>
+ 
+ 
+ <!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal " role="form" method="POST" action="http://localhost:8090/send.php">
+                    <div class="form-group">
+                        <label for="email" class="control-label">İletişim E-Mail Adresi</label>
+                        <div>
+                            <input id="email" type="email" class="form-control" name="eposta" value="" autofocus required>
+                        </div>
+                    </div>
+ 
+                    <div class="form-group">
+                        <label for="text" class="control-label">İletişim İsim Soyad / Firma</label>
+                        <div>
+                            <input id="text" type="text" class="form-control" name="ad" required>
+                        </div>
+                    </div>
+					
+					<div class="form-group">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" rows="4" name="mesaj" id="comment"></textarea>
+</div>
+ 
+
+ 
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" class="btn btn-primary">
+                                Gönder
+                            </button>
+                        </div>
+                    </div>
+                </form>
+      </div>
+    </div>
+  </div>
+
+  
+ </div>
+ 
+</body>
+</html>
