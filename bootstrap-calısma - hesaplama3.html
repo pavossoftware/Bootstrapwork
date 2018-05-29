@@ -26,7 +26,7 @@ var ekhizmetler = "";
 		if ($("#checkKurulumveYapılandırma").is(":checked")) { toplam = toplam + 10;}
 		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
 	
-       
+       $(".a").hide();
 	   
 	   
 	   $("#sonuc").text(  toplam +  parseInt($("#selectCPU").val()) +parseInt($("#selectRAM").val())+parseInt($("#selectDISK").val()) ) ;
@@ -125,6 +125,22 @@ var ekhizmetler = "";
 	</div>
 	
 	<div class="col-md-6">
+	
+	       <div class="row top15">
+    
+    <div class="col-sm-12">
+	<legend>Paket Özellikleri</legend>
+    <span class="a" >Ek IP</span> <br/>
+	<span class="a">Sunucu Yedekleme Günlük</span> <br/>
+	<span class="b">Profesyonel Anti-Spam Koruması</span> <br/>
+	<span class="b">E-mail Arşivleme</span> <br/>
+
+    </div>
+
+  </div>
+	
+	
+	
      <div class="row top15">
     
     <div class="col-sm-12">
@@ -147,33 +163,12 @@ var ekhizmetler = "";
     Profesyonel Anti-Spam Koruması
   </label>
 </div>
-<div class="form-check">
-  <label class="form-check-label">
-    <input id="checkArşivleme" class="form-check-input" type="checkbox" value="E-mail Arşivleme">
-    E-mail Arşivleme
-  </label>
-</div>
-<div class="form-check">
-  <label class="form-check-label">
-    <input id="checkMX-Backup" class="form-check-input" type="checkbox" value="MX Backup">
-    MX Backup
-  </label>
-</div>
-<div class="form-check">
-  <label class="form-check-label">
-    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="Uzaktan Client Kurulum ve Yapılandırma Desteği">
-    Uzaktan Client Kurulum ve Yapılandırma Desteği
-  </label>
-</div>
-<div class="form-check">
-  <label class="form-check-label">
-    <input id="checkKurulumveYapılandırma" class="form-check-input" type="checkbox" value="Yedek Asenkron Sunucu">
-   Yedek Asenkron Sunucu
-  </label>
-</div>
+
     </div>
 
   </div>
+  
+
 
    
 	</div>
