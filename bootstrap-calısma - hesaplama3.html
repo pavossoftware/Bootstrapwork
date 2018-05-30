@@ -10,8 +10,24 @@ $(document).ready(function(){
 var toplam = 0;
 var ekhizmetler = "";
 
+$(".adet").show();
+$(".abone").hide();
 
 	$("select, input").change(function(){
+	
+	
+	
+	$(".adet").hide();
+	$(".abone").hide();
+	$(".a1").not("option").hide();
+	$(".a2").not("option").hide();
+	$(".b1").not("option").hide();
+	$(".b2").not("option").hide();
+	
+	
+	paketval = $("#selectpaket").val();
+	adetval = $('#selectadet option:selected').attr('class');
+	aboneval = $('#selectabone option:selected').attr('class');
 	
 		$('input[type=checkbox]').each(function () {
            if (this.checked) {
@@ -26,10 +42,12 @@ var ekhizmetler = "";
 		if ($("#checkKurulumveYapılandırma").is(":checked")) { toplam = toplam + 10;}
 		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
 	
-       $(".a").hide();
+		
+		if (paketval == "adet"){$("."+paketval).show();$("."+adetval).show();}
+		if (paketval == "abone"){$("."+paketval).show();$("."+aboneval).show();}
 	   
 	   
-	   $("#sonuc").text(  toplam +  parseInt($("#selectCPU").val()) +parseInt($("#selectRAM").val())+parseInt($("#selectDISK").val()) ) ;
+	   $("#sonuc").text(  toplam +  parseInt($("#selectCPU").val())) ;
 	   if( ekhizmetler.length > 0 ){
 			$("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı ve " + ekhizmetler +" ek hizmetleri ile "+ "toplam tutar :" + $("#sonuc").text() ) ;
 	   }
@@ -38,6 +56,7 @@ var ekhizmetler = "";
 	   }
 	   toplam = 0
 	   ekhizmetler = "";
+	   $('input[type=checkbox]').removeAttr('checked');
 
     });
 });
@@ -67,47 +86,55 @@ var ekhizmetler = "";
        <div class="col-sm-12">
   
   <label for="sel1">Kullanım tipi</label>
-  <select class="form-control" id="selectCPU">
-    <option>Aylık Sınırsız Gönderim</option>
-    <option>Yıllık Gönderim Adedi</option>
+  <select class="form-control" id="selectpaket">
+	<option>Seçiniz</option>
+    <option value="adet">Aylık Sınırsız Gönderim</option>
+    <option value="abone">Yıllık Gönderim Adedi</option>
   </select>
 
     </div>
 
     </div>
-	<div class="row top15">
-	    <div class="col-sm-6">
+	<div class=" adet row top15">
+	    <div class="col-sm-12">
 
   <label for="sel1">Gönderim Adedi</label>
-  <select class="form-control" id="selectRAM">
-    <option>2</option>
-    <option>4</option>
+  <select class="form-control" id="selectadet">
+	<option>Seçiniz</option>
+    <option class="a1">2</option>
+    <option class="a2" >4</option>
   </select>
 
     </div>
+	 
+    </div>
 	
-		    <div class="col-sm-6">
+		<div class="abone row top15">
+
+	
+		    <div class="col-sm-12">
 
   <label for="sel1">Abone Sayısı</label>
-  <select class="form-control" id="selectRAM">
-    <option>2</option>
-    <option>4</option>
+  <select class="form-control" id="selectabone">
+	<option>Seçiniz</option>
+    <option class="b1">2</option>
+    <option class="b2">4</option>
   </select>
 
     </div>
    
     </div>
 	
+	
 		<div class="row top15">
-	    <div class="col-sm-6">
+	    <div class="col-sm-12">
+		
+		<p class="adet">1. Paketin ilgili açıklaması paketin ilgili açıklaması paketin ilgili açıklaması paketin ilgili açıklaması paketin ilgili açıklamasıpaketin ilgili açıklaması</p>
+		<p class="abone">2. Paketin ilgili açıklaması paketin ilgili açıklaması paketin ilgili açıklaması paketin ilgili açıklaması paketin ilgili açıklamasıpaketin ilgili açıklaması</p>
 
 
     </div>
-		    <div class="col-sm-6">
 
-
-
-    </div>
    
     </div>
 	
@@ -119,10 +146,10 @@ var ekhizmetler = "";
     
     <div class="col-sm-12">
 	<legend>Paket Özellikleri</legend>
-    <span class="a" >Ek IP  <br/> </span> 
-	<span class="a">Sunucu Yedekleme Günlük <br/></span> 
-	<span class="b">Profesyonel Anti-Spam Koruması</span> <br/>
-	<span class="b">E-mail Arşivleme</span> <br/>
+    <span class="a1" >Ek IP  <br/> </span> 
+	<span class="a2">Sunucu Yedekleme Günlük <br/></span> 
+	<span class="b1">Profesyonel Anti-Spam Koruması<br/></span> 
+	<span class="b2">E-mail Arşivleme <br/></span>
 
     </div>
 
@@ -134,19 +161,19 @@ var ekhizmetler = "";
     
     <div class="col-sm-12">
 	<legend>Ek Özellikler</legend>
-	<div class="form-check">
+	<div class="a1 form-check">
   <label class="form-check-label">
     <input id="checkEkDepolamaAlanı" class="form-check-input" type="checkbox" value="Ek IP">
     Ek IP
   </label>
 </div>
-<div class="form-check">
+<div class="a2 form-check">
   <label class="form-check-label">
     <input id="checkCatch-All" class="form-check-input" type="checkbox" value="Sunucu Yedekleme Günlük">
     Sunucu Yedekleme Günlük
   </label>
 </div>
-<div class="form-check">
+<div class="b1 form-check">
   <label class="form-check-label">
     <input id="checkAnti-Spam" class="form-check-input" type="checkbox" value="Profesyonel Anti-Spam Korumas">
     Profesyonel Anti-Spam Koruması
