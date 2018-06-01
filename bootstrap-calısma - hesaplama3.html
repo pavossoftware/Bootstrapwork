@@ -12,7 +12,8 @@ var ekhizmetler = "";
 
 $(".adet").show();
 $(".abone").hide();
-
+	oldadetval = 1;
+	oldaboneval = 1;
 	$("select, input").change(function(){
 	
 	
@@ -29,6 +30,32 @@ $(".abone").hide();
 	adetval = $('#selectadet option:selected').attr('class');
 	aboneval = $('#selectabone option:selected').attr('class');
 	
+
+		if (paketval == "adet"){
+			$("."+paketval).show();
+			$("."+adetval).show();
+			$('.abone input[type=checkbox]').prop('checked', false);
+		}
+		
+		
+		if (paketval == "abone"){
+			$("."+paketval).show();
+			$("."+aboneval).show();
+			$('.adet input[type=checkbox]').prop('checked', false);
+
+		}
+		
+		if($(this).attr("id") =='selectadet' )
+		{
+			$('.'+ oldadetval+ ' input[type=checkbox]').prop('checked', false);
+		}
+		
+		if($(this).attr("id") =='selectabone' )
+		{
+			$('.'+ oldaboneval + ' input[type=checkbox]').prop('checked', false);
+		}
+		
+	
 		$('input[type=checkbox]').each(function () {
            if (this.checked) {
                ekhizmetler = ekhizmetler + $(this).val() + ", ";
@@ -43,11 +70,11 @@ $(".abone").hide();
 		if ($("#checkAnti-Spam").is(":checked")) { toplam = toplam + 10;}
 	
 		
-		if (paketval == "adet"){$("."+paketval).show();$("."+adetval).show();}
-		if (paketval == "abone"){$("."+paketval).show();$("."+aboneval).show();}
+
 	   
 	   
-	   $("#sonuc").text(  toplam +  parseInt($("#selectCPU").val())) ;
+	   $("#sonuc").text(  toplam +  parseInt($("#selectadet").val()) + parseInt($("#selectabone").val()));
+	   
 	   if( ekhizmetler.length > 0 ){
 			$("#comment").text($("#InputDomainAdress").val() +" domaini için " + $("#InputDomainCount").val() +" adet kullanıcı ve " + ekhizmetler +" ek hizmetleri ile "+ "toplam tutar :" + $("#sonuc").text() ) ;
 	   }
@@ -56,7 +83,11 @@ $(".abone").hide();
 	   }
 	   toplam = 0
 	   ekhizmetler = "";
-	   $('input[type=checkbox]').removeAttr('checked');
+	   
+	   
+	oldadetval = $('#selectadet option:selected').attr('class');
+	oldaboneval = $('#selectabone option:selected').attr('class');
+
 
     });
 });
@@ -76,7 +107,7 @@ $(".abone").hide();
 <body>
 
 <div class="container">
-<h1>toplu mail  hesaplama</h1>
+<h1>toplu mail hesaplama</h1>
 
   <div class="row top15">
   
@@ -100,9 +131,9 @@ $(".abone").hide();
 
   <label for="sel1">Gönderim Adedi</label>
   <select class="form-control" id="selectadet">
-	<option>Seçiniz</option>
-    <option class="a1">2</option>
-    <option class="a2" >4</option>
+	<option value="0">Seçiniz</option>
+    <option value="2" class="a1">2</option>
+    <option value="4" class="a2" >4</option>
   </select>
 
     </div>
@@ -116,9 +147,9 @@ $(".abone").hide();
 
   <label for="sel1">Abone Sayısı</label>
   <select class="form-control" id="selectabone">
-	<option>Seçiniz</option>
-    <option class="b1">2</option>
-    <option class="b2">4</option>
+	<option value="0" >Seçiniz</option>
+    <option value="2" class="b1">2</option>
+    <option value="4" class="b2">4</option>
   </select>
 
     </div>
@@ -161,6 +192,7 @@ $(".abone").hide();
     
     <div class="col-sm-12">
 	<legend>Ek Özellikler</legend>
+	<div class="adet">
 	<div class="a1 form-check">
   <label class="form-check-label">
     <input id="checkEkDepolamaAlanı" class="form-check-input" type="checkbox" value="Ek IP">
@@ -173,11 +205,14 @@ $(".abone").hide();
     Sunucu Yedekleme Günlük
   </label>
 </div>
+</div>
+<div class="abone">
 <div class="b1 form-check">
   <label class="form-check-label">
     <input id="checkAnti-Spam" class="form-check-input" type="checkbox" value="Profesyonel Anti-Spam Korumas">
     Profesyonel Anti-Spam Koruması
   </label>
+</div>
 </div>
 
     </div>
