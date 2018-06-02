@@ -10,8 +10,14 @@ $(document).ready(function(){
 var toplam = 0;
 var ekhizmetler = "";
 
-$(".adet").show();
-$(".abone").hide();
+
+	$(".adet").hide();
+	$(".abone").hide();
+	$(".a1").not("option").hide();
+	$(".a2").not("option").hide();
+	$(".b1").not("option").hide();
+	$(".b2").not("option").hide();
+
 	oldadetval = 1;
 	oldaboneval = 1;
 	$("select, input").change(function(){
@@ -35,6 +41,7 @@ $(".abone").hide();
 			$("."+paketval).show();
 			$("."+adetval).show();
 			$('.abone input[type=checkbox]').prop('checked', false);
+			$('#selectabone').val(0);
 		}
 		
 		
@@ -42,17 +49,20 @@ $(".abone").hide();
 			$("."+paketval).show();
 			$("."+aboneval).show();
 			$('.adet input[type=checkbox]').prop('checked', false);
+			$('#selectadet').val(0);
 
 		}
 		
 		if($(this).attr("id") =='selectadet' )
 		{
 			$('.'+ oldadetval+ ' input[type=checkbox]').prop('checked', false);
+			//$('#selectabone').val() = 0;
 		}
 		
 		if($(this).attr("id") =='selectabone' )
 		{
 			$('.'+ oldaboneval + ' input[type=checkbox]').prop('checked', false);
+			//$('#selectadet').val() = 0;
 		}
 		
 	
